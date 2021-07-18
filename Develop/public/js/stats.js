@@ -161,26 +161,6 @@ function populateChart(data) {
     }
   });
 
-  let donutChart = new Chart(pie2, {
-    type: "doughnut",
-    data: {
-      labels: workouts,
-      datasets: [
-        {
-          label: "Excercises Performed",
-          backgroundColor: colors,
-          data: pounds
-        }
-      ]
-    },
-    options: {
-      title: {
-        display: true,
-        text: "Excercises Performed"
-      }
-    }
-  });
-
 }
 
 
@@ -196,6 +176,42 @@ function duration(data) {
   return durations;
 }
 
+function workoutNames(data) {
+  let workouts = [];
+
+  data.forEach(workout => {
+    workout.exercises.forEach(exercise => {
+      workouts.push(exercise.name);
+    });
+  });
+  
+  return workouts;
+}
 
 // get all workout data from back-end
-API.getWorkoutsInRange().then(populateChart);
+// API.getWorkoutsInRange().then(populateChart);
+
+API.getWorkoutsInRange()
+
+  function generatePalette() {
+    const arr = [
+    "#003f5c",
+    "#2f4b7c",
+    "#665191",
+    "#a05195",
+    "#d45087",
+    "#f95d6a",
+    "#ff7c43",
+    "ffa600",
+    "#003f5c",
+    "#2f4b7c",
+    "#665191",
+    "#a05195",
+    "#d45087",
+    "#f95d6a",
+    "#ff7c43",
+    "ffa600"
+  ]
+
+  return arr;
+  }
